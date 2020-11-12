@@ -1,0 +1,17 @@
+<button
+  (click)="goTo()"
+  [ngClass]="{
+    'btn-primary': text.includes('add'),
+    'btn-outline-danger': text.includes('back')
+  }"
+  class="btn"
+>
+  <i
+    [ngClass]="{
+      'fa-plus': text.includes('add'),
+      'fa-arrow-left': text.includes('back')
+    }"
+    class="fas"
+  ></i>
+  {{ text }}
+</button>

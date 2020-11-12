@@ -1,0 +1,55 @@
+<h1>Heros</h1>
+<hr />
+
+<div *ngIf="!loading" class="row animated fadeInDown">
+  <div class="col text-right">
+    <app-button-one [text]="'add'" [route]="'/hero/new'"></app-button-one>
+  </div>
+</div>
+
+<div *ngIf="!loading" class="container mt-3 animated fadeInUp">
+  <div class="row p-3 mb-2 bg-dark text-white">
+    <div class="col text-center">#</div>
+    <div class="col text-center">Name</div>
+    <div class="col text-center">Power</div>
+    <div class="col text-center">Live</div>
+    <div class="col text-center"></div>
+  </div>
+  <div
+    class="row p-3 mb-2 bg-light text-dark"
+    *ngFor="let hero of heros; index as i"
+  >
+    <div class="col text-center">
+      {{ i + 1 }}
+    </div>
+    <div class="col text-center">{{ hero.name }}</div>
+    <div class="col text-center">{{ hero.power }}</div>
+    <div class="col text-center">{{ hero.live }}</div>
+    <div class="col text-center">
+      <button class="btn btn-secondary mr-1" [routerLink]="['/hero', hero.id]">
+        <i class="fas fa-edit"></i>
+      </button>
+      <button class="btn btn-danger" (click)="dropHero(hero)">
+        <i class="fas fa-trash"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="(!heros || heros.length < 1) && !loading"
+  class="alert alert-warning text-center mt-3"
+>
+  <h4 class="alert-heading">No info found</h4>
+  <p>
+    <i class="fas fa-exclamation"></i>
+  </p>
+</div>
+
+<div *ngIf="loading" class="alert alert-info text-center mt-3">
+  <h4 class="alert-heading">Loading</h4>
+  <p>
+    <i class="fas fa-sync-alt fa-spin fa-2x"></i>
+  </p>
+  <p class="mb-0">Please wait ...</p>
+</div>

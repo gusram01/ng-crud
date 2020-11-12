@@ -1,0 +1,87 @@
+<div class="row animated fadeIn">
+  <div class="col">
+    <h1>Hero Screen</h1>
+    <h2>
+      {{ heroForm.get("id").value.includes("Fire") ? "New Hero" : hero.name }}
+    </h2>
+  </div>
+</div>
+<hr />
+
+<div class="row">
+  <div class="col text-right">
+    <app-button-one [text]="'back'" [route]="'/heros'"></app-button-one>
+  </div>
+</div>
+
+<div class="row mt-3 animated fadeIn">
+  <div class="col">
+    <form [formGroup]="heroForm" (ngSubmit)="save()">
+      <div class="form-group row">
+        <label class="col-2"> ID </label>
+        <input type="hidden" class="form-control col" formControlName="id" />
+        <p class="form-control col">{{ heroForm.get("id").value }}</p>
+      </div>
+      <div class="form-group row">
+        <label class="col-2"> Name </label>
+        <input
+          class="form-control col"
+          type="text"
+          placeholder="Name"
+          formControlName="name"
+        />
+      </div>
+      <div class="form-group row">
+        <label class="col-2"> Power </label>
+        <input
+          class="form-control col"
+          type="text"
+          placeholder="Power"
+          formControlName="power"
+        />
+      </div>
+      <div class="form-group row">
+        <label class="col-2"> Tools </label>
+        <input
+          class="form-control col"
+          type="text"
+          placeholder="tools"
+          formControlName="tools"
+        />
+      </div>
+      <div class="form-group row">
+        <div class="col-3 text-center">
+          <i
+            [ngClass]="{
+              'fa-smile-wink': live,
+              'fa-dizzy': !live
+            }"
+            class="fas fa-2x"
+          ></i>
+        </div>
+
+        <div class="col">
+          <button
+            [ngClass]="{
+              'btn-outline-success': live,
+              'btn-outline-danger': !live
+            }"
+            (click)="changeLive()"
+            class="btn btn-block"
+            type="button"
+          >
+            {{ live ? "Live" : "Died" }}
+          </button>
+        </div>
+        <input type="hidden" class="form-control col" formControlName="live" />
+      </div>
+
+      <div class="form-group row">
+        <button type="submit" class="btn btn-outline-primary btn-block">
+          <i class="fas fa-save"></i>
+          Save
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
